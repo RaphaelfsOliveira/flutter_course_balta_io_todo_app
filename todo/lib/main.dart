@@ -32,11 +32,28 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var newTaskCtrl = TextEditingController();
+
+  void add() {
+    if (newTaskCtrl.text.isEmpty) return;
+
+    setState(() {
+      widget.items.add(
+        Item(
+          title: newTaskCtrl.text,
+          done: false,
+        ),
+      );
+      newTaskCtrl.clear();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: TextFormField(
+          controller: newTaskCtrl,
           keyboardType: TextInputType.text,
           style: TextStyle(
             color: Colors.white,
@@ -60,7 +77,6 @@ class _HomePageState extends State<HomePage> {
                 item.title,
                 style: TextStyle(
                   fontSize: 23,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
               key: Key(item.title),
@@ -73,6 +89,10 @@ class _HomePageState extends State<HomePage> {
               },
             );
           }),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          backgroundColor: Colors.yellow,
+          onPressed: add),
     );
   }
 }
