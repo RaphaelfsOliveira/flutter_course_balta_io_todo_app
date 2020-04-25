@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
           keyboardType: TextInputType.text,
           style: TextStyle(
             color: Colors.white,
-            fontSize: 23,
+            fontSize: 24,
           ),
           decoration: InputDecoration(
             labelText: 'Nova Tarefa',
@@ -72,21 +72,23 @@ class _HomePageState extends State<HomePage> {
           itemCount: widget.items.length,
           itemBuilder: (BuildContext context, int index) {
             final item = widget.items[index];
-            return CheckboxListTile(
-              title: Text(
-                item.title,
-                style: TextStyle(
-                  fontSize: 23,
-                ),
-              ),
+            return Dismissible(
               key: Key(item.title),
-              value: item.done,
-              onChanged: (value) {
-                setState(() {
-                  item.done = value;
-                });
-                print(value);
-              },
+              child: CheckboxListTile(
+                title: Text(
+                  item.title,
+                  style: TextStyle(
+                    fontSize: 24,
+                  ),
+                ),
+                value: item.done,
+                onChanged: (value) {
+                  setState(() {
+                    item.done = value;
+                  });
+                  print(value);
+                },
+              ),
             );
           }),
       floatingActionButton: FloatingActionButton(
