@@ -48,6 +48,12 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void remove(index) {
+    setState(() {
+      widget.items.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,6 +80,15 @@ class _HomePageState extends State<HomePage> {
             final item = widget.items[index];
             return Dismissible(
               key: Key(item.title),
+              background: Container(
+                color: Colors.orange.withOpacity(0.8),
+              ),
+              secondaryBackground: Container(
+                color: Colors.red.withOpacity(0.8),
+              ),
+              onDismissed: (direction) {
+                remove(index);
+              },
               child: CheckboxListTile(
                 title: Text(
                   item.title,
