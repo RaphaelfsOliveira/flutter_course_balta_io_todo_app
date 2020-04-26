@@ -132,9 +132,10 @@ class _HomePageState extends State<HomePage> {
             );
           }),
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          backgroundColor: Colors.yellow,
-          onPressed: add),
+        child: Icon(Icons.add),
+        backgroundColor: Colors.red,
+        onPressed: add,
+      ),
     );
   }
 }
